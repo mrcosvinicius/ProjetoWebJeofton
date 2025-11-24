@@ -11,7 +11,7 @@
 
     <h2>Cadastrar novo aluno</h2>
 
-    <form action="main.js" method="POST">
+    <form action="http://localhost:3000/alunos" method="POST">
         <label for="Nome">Nome:</label> <br>
         <input type="text" placeholder="Digite o Nome" name="Nome" required> <br><br>
 
@@ -31,6 +31,17 @@
 
     </form>
 
-    <script defer src="main.js"></script>
+    <h2>Lista de Alunos</h2>
+    
+    <button onclick="carregarAlunos()">Mostrar Alunos Cadastrados</button>
+    <br>
+    <button onclick="">Atualizar Lista</button>
+    <br><br>    
+    <!-- vai ser preenchido com o js automaticamente -->
+    <div id="ListaAlunos">
+        
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
