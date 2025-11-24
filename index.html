@@ -98,7 +98,6 @@
 
         <div id="message" class="message" style="display: none;"></div>
 
-        <!-- Formulário de Cadastro -->
         <div style="margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
             <h2>Cadastrar Aluno</h2>
             <form id="formCadastro">
@@ -123,11 +122,9 @@
             </form>
         </div>
 
-        <!-- Lista de Alunos -->
         <div>
             <h2>Alunos Cadastrados</h2>
             <div id="alunosList">
-                <!-- Lista será carregada aqui -->
             </div>
         </div>
     </div>
@@ -137,7 +134,6 @@
         let nextId = parseInt(localStorage.getItem('nextId')) || 1;
         let editandoId = null;
 
-        // Mostrar mensagens
         function showMessage(text, type) {
             const messageDiv = document.getElementById('message');
             messageDiv.textContent = text;
@@ -149,13 +145,11 @@
             }, 3000);
         }
 
-        // Salvar dados no localStorage
         function salvarDados() {
             localStorage.setItem('alunos', JSON.stringify(alunos));
             localStorage.setItem('nextId', nextId.toString());
         }
 
-        // Cadastrar ou atualizar aluno
         document.getElementById('formCadastro').addEventListener('submit', (e) => {
             e.preventDefault();
             
@@ -170,7 +164,6 @@
             }
 
             if (editandoId) {
-                // Atualizar aluno existente
                 const alunoIndex = alunos.findIndex(a => a.id === editandoId);
                 alunos[alunoIndex] = {
                     ...alunos[alunoIndex],
@@ -199,7 +192,6 @@
             carregarAlunos();
         });
 
-        // Carregar lista de alunos - FUNÇÃO CORRIGIDA
         function carregarAlunos() {
             const lista = document.getElementById('alunosList');
             
@@ -225,7 +217,6 @@
             `).join('');
         }
 
-        // Editar aluno
         function editarAluno(id) {
             const aluno = alunos.find(a => a.id === id);
             if (aluno) {
@@ -238,7 +229,6 @@
             }
         }
 
-        // Deletar aluno
         function deletarAluno(id) {
             if (!confirm('Tem certeza que deseja excluir este aluno?')) {
                 return;
@@ -250,13 +240,11 @@
             carregarAlunos();
         }
 
-        // Limpar formulário
         function limparFormulario() {
             document.getElementById('formCadastro').reset();
             editandoId = null;
         }
 
-        // Carregar alunos ao iniciar
         document.addEventListener('DOMContentLoaded', carregarAlunos);
     </script>
 </body>
