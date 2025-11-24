@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Sistema de Gerenciamento de Alunos</h1>
+
+    <h2>Cadastrar novo aluno</h2>
+
+    <form action="main.js" method="POST">
+        <label for="Nome">Nome:</label> <br>
+        <input type="text" placeholder="Digite o Nome" name="Nome" required> <br><br>
+
+        <label for="Idade">Idade:</label> <br>
+        <input type="number" placeholder="Idade" min="1" max="120" name="Idade" required> <br><br>
+        
+        <label for="email">Email:</label> <br>
+        <input type="email" placeholder="Digite o Email" name="email"> <br><br>
+        
+        <label for="Curso">Curso:</label> <br>
+        <input type="text" placeholder="Curso" name="Curso"> <br><br>
+        
+        <label for="Matricula">Matrícula:</label> <br>
+        <input type="text" placeholder="Matricula" name="Matricula"> <br><br>
+
+        <button type="submit" action="Alert">Cadastrar</button>
+
+    </form>
+
+    <script defer src="main.js"></script>
+</body>
+</html>
