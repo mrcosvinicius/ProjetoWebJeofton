@@ -28,6 +28,11 @@
             margin-bottom: 20px;
             color: #333;
         }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -130,122 +135,7 @@
     </div>
 
     <script>
-        let alunos = JSON.parse(localStorage.getItem('alunos')) || [];
-        let nextId = parseInt(localStorage.getItem('nextId')) || 1;
-        let editandoId = null;
-
-        function showMessage(text, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.textContent = text;
-            messageDiv.className = `message ${type}`;
-            messageDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 3000);
-        }
-
-        function salvarDados() {
-            localStorage.setItem('alunos', JSON.stringify(alunos));
-            localStorage.setItem('nextId', nextId.toString());
-        }
-
-        document.getElementById('formCadastro').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const nome = document.getElementById('nome').value;
-            const idade = document.getElementById('idade').value;
-            const email = document.getElementById('email').value;
-            const curso = document.getElementById('curso').value;
-
-            if (!nome || !idade) {
-                showMessage('Nome e idade são obrigatórios', 'error');
-                return;
-            }
-
-            if (editandoId) {
-                const alunoIndex = alunos.findIndex(a => a.id === editandoId);
-                alunos[alunoIndex] = {
-                    ...alunos[alunoIndex],
-                    nome,
-                    idade: parseInt(idade),
-                    email,
-                    curso
-                };
-                showMessage('Aluno atualizado com sucesso!', 'success');
-                editandoId = null;
-            } else {
-                // Cadastrar novo aluno
-                const novoAluno = {
-                    id: nextId++,
-                    nome,
-                    idade: parseInt(idade),
-                    email,
-                    curso
-                };
-                alunos.push(novoAluno);
-                showMessage('Aluno cadastrado com sucesso!', 'success');
-            }
-
-            salvarDados();
-            limparFormulario();
-            carregarAlunos();
-        });
-
-        function carregarAlunos() {
-            const lista = document.getElementById('alunosList');
-            
-            if (alunos.length === 0) {
-                lista.innerHTML = '<p>Nenhum aluno cadastrado.</p>';
-                return;
-            }
-
-            lista.innerHTML = alunos.map(aluno => `
-                <div class="aluno-item">
-                    <div class="aluno-info">
-                        <strong>ID:</strong> ${aluno.id} | 
-                        <strong>Nome:</strong> ${aluno.nome} | 
-                        <strong>Idade:</strong> ${aluno.idade} | 
-                        <strong>Email:</strong> ${aluno.email || 'N/A'} | 
-                        <strong>Curso:</strong> ${aluno.curso || 'N/A'}
-                    </div>
-                    <div class="aluno-actions">
-                        <button onclick="editarAluno(${aluno.id})">Editar</button>
-                        <button onclick="deletarAluno(${aluno.id})" class="btn-danger">Excluir</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function editarAluno(id) {
-            const aluno = alunos.find(a => a.id === id);
-            if (aluno) {
-                document.getElementById('nome').value = aluno.nome;
-                document.getElementById('idade').value = aluno.idade;
-                document.getElementById('email').value = aluno.email || '';
-                document.getElementById('curso').value = aluno.curso || '';
-                editandoId = id;
-                showMessage(`Editando aluno: ${aluno.nome}`, 'success');
-            }
-        }
-
-        function deletarAluno(id) {
-            if (!confirm('Tem certeza que deseja excluir este aluno?')) {
-                return;
-            }
-
-            alunos = alunos.filter(a => a.id !== id);
-            salvarDados();
-            showMessage('Aluno excluído com sucesso!', 'success');
-            carregarAlunos();
-        }
-
-        function limparFormulario() {
-            document.getElementById('formCadastro').reset();
-            editandoId = null;
-        }
-
-        document.addEventListener('DOMContentLoaded', carregarAlunos);
+       
     </script>
 </body>
 </html>
